@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
@@ -31,7 +33,7 @@ app.post('/chat', async (req, res) => {
         res.json({ response: botResponse });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error communicating with ChatGPT' });
+        res.status(500).json({ error: 'Error communicating with AI' });
     }
 });
 

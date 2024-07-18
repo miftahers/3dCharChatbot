@@ -13,50 +13,60 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body class="bg-3b3b3b">
-        <div id="main-div" class="shadow bg-secondary-subtle container-xxl mx-auto my-5 rounded">
-            <div class="row shadow p-3 mb-5 bg-warning rounded mx-2 my-4">
-                <h1 class="my-4 col text-uppercase fw-bold text-center">Class bersama Orenji-san</h1>
+        <div id="main-div" class="shadow bg-dark-subtle container-xxl mx-auto m-1 p-2 rounded">
+            <div class="row shadow bg-3b3b3b p-3 m-2 rounded">
+                <h1 class="text-white fw-bold text-center ts-uppercase">Belajar bersama Orenji</h1>
             </div>
-            <div class="row my-5 shadow p-3 mb-5 bg-3b3b3b rounded m-2">
-                <div class="col p-2">
-                    <div class="video">
-                        <iframe
-                            width="720"
-                            height="341"
-                            src="https://www.youtube.com/embed/p8EYcGiG0hY?si=GEDQXI9wl8nqZzfN"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen
-                            class="rounded "
-                        ></iframe>
-                    </div>
+            <div class="row shadow p-3 m-2 bg-3b3b3b rounded">
+                <div class="col video">
+                    <iframe
+                        id="yt-player"
+                        width="480"
+                        height="360"
+                        src="https://www.youtube.com/embed/p8EYcGiG0hY?si=GEDQXI9wl8nqZzfN"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                        class="rounded my-auto"
+                    ></iframe>
                 </div>
-                <div class="col p-2">
-                    <div class="character mx-auto py-5 w-3 text-center">
+                <div class="col">
+                    <div class="character p-2 mx-auto flex d-flex align-items-center w-3 text-center">
                         <img id="character" src="img/idle.gif" alt="">
                     </div>
                 </div>
-                <div class="col p-2">
-                    <div id="chat-box" class="mb-3 inner-shadow"></div>
-                    <div class="input-group">
+                <div class="col w-sm">
+                    <div id="chat-box" class="inner-shadow rounded"></div>
+                    <div class="input-group my-2">
                         <input
                             id="user-input"
                             type="text"
-                            class="form-control rounded mr-1"
-                            placeholder="Type your message here..."
+                            class="form-control rounded"
+                            placeholder="Tulis pesan anda disini..."
                         >
                         <div class="input-group-append">
-                            <button id="send-btn" class="btn btn-warning">Send</button>
+                            <button id="send-btn" class="btn btn-warning">Kirim</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row my-5 bg-success"></div>
+            <div class="row shadow">
+                <div class="col p-2">
+                    <div class="bg-3b3b3b rounded text-center p-3 m-2">
+                        <label for="voice-select" class="text-white">Pilih bahasa suara bot:</label>
+                        <select id="voice-select" class="rounded"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-success"></div>
         </div>
+        <!-- Scripts -->
+        <script src="https://www.youtube.com/iframe_api"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

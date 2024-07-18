@@ -19,6 +19,10 @@
     background: #555; 
 }
 
+body {
+    font-family: Arial, sans-serif;
+}
+
 #chat-box {
     height: 300px;
     overflow-y: scroll;
@@ -39,12 +43,12 @@
 }
 .user-message {
     text-align: right;
-    background-color: orange;
+    background-color: #f1f1f1;
     color: black;
 }
 .bot-message {
     text-align: left;
-    background-color: lightblue;
+    background-color: orange;
     color: black;
 }
 
@@ -53,5 +57,9 @@
 }
 
 #character {
+    width: 240px;
+}
+
+.character {
     width: 240px;
 }

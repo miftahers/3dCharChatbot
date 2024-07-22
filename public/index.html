@@ -12,54 +12,65 @@
         >
         <link rel="stylesheet" href="style.css">
     </head>
-    <body class="bg-3b3b3b">
-        <div id="main-div" class="shadow bg-dark-subtle container-xxl mx-auto m-1 p-2 rounded">
-            <div class="row shadow bg-3b3b3b p-3 m-2 rounded">
-                <h1 class="text-white fw-bold text-center ts-uppercase">Belajar bersama Orenji</h1>
-            </div>
-            <div class="row shadow p-3 m-2 bg-3b3b3b rounded">
-                <div class="col video">
-                    <iframe
-                        id="yt-player"
-                        width="480"
-                        height="360"
-                        src="https://www.youtube.com/embed/p8EYcGiG0hY?si=GEDQXI9wl8nqZzfN"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
-                        class="rounded my-auto"
-                    ></iframe>
+    <body class="bg-body">
+        <div id="main-div" class="bg-light container-fluid mx-auto m-1 p-2 rounded">
+            <div class="row bg-light px-5 m-2 rounded border border-dark">
+                <div class="col-4 d-flex justify-content-center align-items-center full-height">
+                    <h1 class="text-dark fw-bold text-left text-uppercase ">Belajar bersama Orenji</h1>
                 </div>
-                <div class="col">
-                    <div class="character p-2 mx-auto flex d-flex align-items-center w-3 text-center">
-                        <img id="character" src="img/idle.gif" alt="">
-                    </div>
-                </div>
-                <div class="col w-sm">
-                    <div id="chat-box" class="inner-shadow rounded"></div>
-                    <div class="input-group my-2">
-                        <input
-                            id="user-input"
-                            type="text"
-                            class="form-control rounded"
-                            placeholder="Tulis pesan anda disini..."
-                        >
-                        <div class="input-group-append">
-                            <button id="send-btn" class="btn btn-warning">Kirim</button>
+                <div class="col-8 p-2">
+                    <div class="text-right p-3 m-2 fs-6 text">
+                        <label for="voice-select" class=" p-2">Pilih Suara Bot:</label>
+                        <select id="voice-select" class="rounded p-2 bg-light w-50"></select>
+                        <div class="btn-group mx-2 my-0" role="group">
+                            <button id="stop" class=" btn btn-outline-dark" type="button">▩</button>
+                            <button id="pause" class=" btn btn-outline-dark" type="button">‖</button>
+                            <button id="resume" class=" btn btn-outline-dark" type="button">▶</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row shadow">
-                <div class="col p-2">
-                    <div class="bg-3b3b3b rounded text-center p-3 m-2">
-                        <label for="voice-select" class="text-white">Pilih bahasa suara bot:</label>
-                        <select id="voice-select" class="rounded"></select>
+            <div class="row bg-light px-5 m-2 rounded border border-dark">
+                <div class="col-7 my-2 mx-auto container-fluid video  border border-dark">
+                    <div class="container-fluid ratio ratio-16x9 d-flex justify-content-center align-items-center full-height full-width my-2">
+                        <iframe
+                            id="yt-player"
+                            src="https://www.youtube.com/embed/p8EYcGiG0hY?si=GEDQXI9wl8nqZzfN"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            class="rounded my-auto"
+                        ></iframe>
+                    </div>
+                </div>
+                <div class="col-3 my-2 mx-auto container  border border-dark">
+                    <div class="row full-width m-2">
+                        <div class="character m-2 mx-auto flex d-flex align-items-center text-center">
+                            <img
+                                id="character"
+                                class="w-100"
+                                src="img/idle.gif"
+                                alt=""
+                            >
+                        </div>
+                    </div>
+                    <div class="row full-width  m-2">
+                        <div id="chat-box" class="rounded overflow-y-scroll w-100 bg-light border border-dark"></div>
+                        <div class="row input-group mx-0 my-2 d-flex justify-content-center align-items-center">
+                            <input
+                                id="user-input"
+                                type="text"
+                                class="form-control rounded border border-dark"
+                                placeholder="Tulis pesan anda disini..."
+                            >
+                            <button id="send-btn" class="btn btn-outline-dark rounded  my-2" type="button">Kirim</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row p-3 m-2 rounded bg-light"></div>
             <div class="row bg-success"></div>
         </div>
         <!-- Scripts -->

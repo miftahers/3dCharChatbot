@@ -1,6 +1,7 @@
 const synth = window.speechSynthesis;
 const voiceSelect = document.getElementById('voice-select');
 
+
 function populateVoiceList() {
     if (typeof synth === 'undefined') {
         return;
@@ -16,12 +17,10 @@ function populateVoiceList() {
         voiceSelect.appendChild(option);
     }
 }
-
 populateVoiceList();
 if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
 }
-
 document.getElementById('send-btn').addEventListener('click', async function () {
     const userInput = document.getElementById('user-input').value;
     console.log(userInput)
@@ -36,7 +35,7 @@ document.getElementById('send-btn').addEventListener('click', async function () 
 
     document.getElementById('user-input').value = '';
 
-    const botResponse = await getChatGPTResponse(userInput);
+    const botResponse = await getAIResponse(userInput);
     addMessage(`${botResponse}`, 'bot-message');
 });
 
@@ -54,7 +53,8 @@ function addMessage(message, className) {
     }
 }
 
-async function getChatGPTResponse(userInput) {
+// Function untuk mendapat respon dari AI
+async function getAIResponse(userInput) {
     try {
         const response = await fetch('/chat', {
             method: 'POST',
@@ -110,28 +110,29 @@ function speak(text) {
     }
 }
 
-// Mengelola status player youtube
-// Global variable to hold the YouTube player instance
-var player;
+const pauseButton = document.getElementById('pause');
+const resumeButton = document.getElementById('resume');
+const stopButton = document.getElementById('stop');
 
-// Function called by YouTube API when it's ready
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('yt-player', {
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-// Function to monitor player state changes
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING) {
-        console.log('Video is playing');
-        var character = document.getElementById('character');
-        character.src = 'img/good.png';
-    } else if (event.data == YT.PlayerState.PAUSED) {
-        console.log('Video is paused');
-        var character = document.getElementById('character');
-        character.src = 'img/idle.gif';
+function pauseSpeech() {
+    if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
     }
 }
+
+// Function to resume speech
+function resumeSpeech() {
+    if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+    }
+}
+
+// Function to stop speech
+function stopSpeech() {
+    window.speechSynthesis.cancel();
+}
+
+// Event listeners for buttons
+pauseButton.addEventListener('click', pauseSpeech);
+resumeButton.addEventListener('click', resumeSpeech);
+stopButton.addEventListener('click', stopSpeech);

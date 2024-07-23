@@ -10,27 +10,49 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
             crossorigin="anonymous"
         >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="img/icon.ico">
     </head>
     <body class="bg-body">
-        <div id="main-div" class="bg-light container-fluid mx-auto m-1 p-2 rounded">
+        <div id="main-div" class="bg-light container-fluid mx-auto m-1 rounded">
             <div class="row bg-light px-5 m-2 rounded border border-dark">
-                <div class="col-4 d-flex justify-content-center align-items-center full-height">
-                    <h1 class="text-dark fw-bold text-left text-uppercase ">Belajar bersama Orenji</h1>
-                </div>
-                <div class="col-8 p-2">
+                <div class="col p-2">
                     <div class="text-right p-3 m-2 fs-6 text">
-                        <label for="voice-select" class=" p-2">Pilih Suara Bot:</label>
-                        <select id="voice-select" class="rounded p-2 bg-light w-50"></select>
-                        <div class="btn-group mx-2 my-0" role="group">
-                            <button id="stop" class=" btn btn-outline-dark" type="button">▩</button>
-                            <button id="pause" class=" btn btn-outline-dark" type="button">‖</button>
-                            <button id="resume" class=" btn btn-outline-dark" type="button">▶</button>
+                        <div class="row">
+                            <div class="col-4 d-flex justify-content-left align-items-left full-height">
+                                <h1 class="text-dark fw-bold text-left text-uppercase fs-3">Kontrol Orenji</h1>
+                            </div>
+                            <div class="col">
+                                <label for="voice-select" class=" p-2">Pilih Suara:</label>
+                                <select id="voice-select" class="rounded p-2 bg-light w-50"></select>
+                            </div>
+                            <div class="col btn-group mx-2 my-0" role="group">
+                                <button id="stop" class=" btn btn-outline-dark" type="button">▩</button>
+                                <button id="pause" class=" btn btn-outline-dark" type="button">‖</button>
+                                <button id="resume" class=" btn btn-outline-dark" type="button">▶</button>
+                            </div>
+                            <div class="col d-flex justify-content-center align-items-center">
+                                <!-- Slider for speed adjustment -->
+                                <label for="speedSlider">
+                                    Speed:
+                                    <span id="speedValue">1.5</span>
+                                </label>
+                                <input
+                                    type="range"
+                                    id="speedSlider"
+                                    min="0.1"
+                                    max="2"
+                                    step="0.1"
+                                    value="1.5"
+                                    class="slider"
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row bg-light px-5 m-2 rounded border border-dark">
+            <div class="row bg-light m-2 rounded border border-dark">
                 <div class="col-7 my-2 mx-auto container-fluid video  border border-dark">
                     <div class="container-fluid ratio ratio-16x9 d-flex justify-content-center align-items-center full-height full-width my-2">
                         <iframe
@@ -46,7 +68,34 @@
                     </div>
                 </div>
                 <div class="col-3 my-2 mx-auto container  border border-dark">
-                    <div class="row full-width m-2">
+                    <!-- Toast -->
+                    <div class="toast-container custom-toast-container">
+                        <div
+                            id="liveToast"
+                            class="toast"
+                            role="alert"
+                            aria-live="assertive"
+                            aria-atomic="true"
+                            data-bs-autohide="true"
+                            data-bs-delay="6000"
+                        >
+                            <div class="toast-header text-black">
+                                <strong class="me-auto">Orenji</strong>
+                                <small>sekarang...</small>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="toast"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="toast-body">
+                                <p id="toast-message"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Character -->
+                    <div class="row rounded full-width m-2">
                         <div class="character m-2 mx-auto flex d-flex align-items-center text-center">
                             <img
                                 id="character"
@@ -56,7 +105,8 @@
                             >
                         </div>
                     </div>
-                    <div class="row full-width  m-2">
+                    <!-- Chatbox -->
+                    <div class="row rounded full-width  m-2">
                         <div id="chat-box" class="rounded overflow-y-scroll w-100 bg-light border border-dark"></div>
                         <div class="row input-group mx-0 my-2 d-flex justify-content-center align-items-center">
                             <input
@@ -66,12 +116,14 @@
                                 placeholder="Tulis pesan anda disini..."
                             >
                             <button id="send-btn" class="btn btn-outline-dark rounded  my-2" type="button">Kirim</button>
+                            <button type="button" class="btn btn-outline-dark rounded" id="liveToastBtn">Berikan motivasi</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row p-3 m-2 rounded bg-light"></div>
-            <div class="row bg-success"></div>
+            <div class="row px-5 m-2 rounded bg-light rounded border border-dark">
+                <p class="text-center fs-6 m-1">© Miftah Firdaus 2024</p>
+            </div>
         </div>
         <!-- Scripts -->
         <script src="https://www.youtube.com/iframe_api"></script>

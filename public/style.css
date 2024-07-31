@@ -50,7 +50,7 @@ body {
 .bot-message {
     text-align: left;
     background-color: white;
-    border: 1px solid orange;
+    border: 1px solid rgb(0, 204, 255);
     color: black;
 }
 

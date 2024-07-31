@@ -6,7 +6,7 @@ document.getElementById('send-btn').addEventListener('click', async function () 
     }
     // Set ekspresi kembali ke idle
     const character = document.getElementById('character');
-    character.src = 'gif/idle.gif'; // Default image
+    character.src = pickRandomIdle(); // Default image
 
     addMessage(`${userInput}`, 'user-message');
 
@@ -47,13 +47,13 @@ async function playAudio(audioFile) {
 
         audio.addEventListener('ended', () => {
             console.log('Audio finished playing');
-            character.src = 'gif/idle.gif';
+            character.src = pickRandomIdle();
             URL.revokeObjectURL(audioUrl); // Clean up object URL after use
         });
 
         audio.addEventListener('pause', () => {
             console.log('Audio paused');
-            character.src = 'gif/idle.gif';
+            character.src = pickRandomIdle();
         });
 
         await audio.play();
@@ -65,6 +65,8 @@ async function playAudio(audioFile) {
 
 // Function untuk mendapatkan respon dari AI
 async function getAIResponse(userInput, maxTokens = 20128) {
+
+    let url = "{$backend_url}/chat";
     try {
         const response = await fetch('/chat', {
             method: 'POST',
@@ -96,12 +98,17 @@ async function getAIResponse(userInput, maxTokens = 20128) {
 document.getElementById('user-input').addEventListener('input', function () {
     var character = document.getElementById('character');
     if (this.value === '') {
-        character.src = 'gif/idle.gif'; // Default image
+        character.src = pickRandomIdle(); // Default image
     } else {
         // Only change to lookDown if it's not already set
-        if (character.src.indexOf('gif/lookDown.gif') === -1) {
+        if (character.src.indexOf('gif/talking.gif') !== -1) {
+            // If talking GIF is active, cancel lookDown GIF
+            character.src = 'gif/talking.gif'; // Set to talking GIF
+        } else if (character.src.indexOf('gif/lookDown.gif') === -1) {
+            // If lookDown GIF is not active, set it
             character.src = 'gif/lookDown.gif'; // New image
         }
+
     }
 });
 // Toast
@@ -115,10 +122,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             let resp = await getAIResponse('Berikan motivasi', 128);
             toastMessageElement.innerHTML = marked.parse(typeof resp.response === 'string' ? resp.response : JSON.stringify(resp.response));
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-            if (resp.audioFile) {
-                console.log(resp.response);
-                playAudio("/audio/output.mp3");
-            }
+            // if (resp.audioFile) {
+            //     console.log(resp.response);
+            //     playAudio("/audio/output.mp3");
+            // }
             toastBootstrap.show();
         } catch (error) {
             console.error('Kesalahan mendapatkan respons AI:', error);
@@ -167,9 +174,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-// Function to update speed value display
-document.getElementById('speedSlider').addEventListener('input', function () {
-    const speedValue = this.value;
-    document.getElementById('speedValue').textContent = speedValue;
-});
-
+function pickRandomIdle() {
+    // Use Math.random() to generate a number between 0 and 1, then use ternary operator for selection
+    return Math.random() < 0.5 ? 'gif/idle.gif' : 'gif/idle2.gif';
+}
